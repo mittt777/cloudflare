@@ -2,12 +2,28 @@ import { Hono } from 'hono';
 import { Redis } from '@upstash/redis/cloudflare';
 import { cors } from 'hono/cors';
 
+
+
+
+
+
+
+
+app.get('/con', async (c) => {
+  const count = await redis.incr("counter");
+
+  return c.json({ count });
+});
+
+
+
+
 const app = new Hono();
 app.use(cors());
 
 const redis = new Redis({
-  url: 'improved-ladybug-19708.upstash.io',
-  token: 'AUz8AAIjcDE3NDExOGE4ZTMzMGI0NjAzODNlOGMxZDUxOTE1ZmE1ZHAxMA',
+  url: "https://improved-ladybug-19708.upstash.io",
+  token: "AUz8AAIjcDE3NDExOGE4ZTMzMGI0NjAzODNlOGMxZDUxOTE1ZmE1ZHAxMA",
 });
 
 // Register contract endpoint
